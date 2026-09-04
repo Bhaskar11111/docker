@@ -1,6 +1,8 @@
 import express from 'express';
 const app=express()
 
+app.use(express.static('public'))
+
 app.get('/',(req,res)=>
 {
     res.status(200).json({
@@ -20,9 +22,14 @@ app.get('/api/users',(req,res)=>
         {id:2,name:'Bob'},
         {id:3,name:'Charlie'},
         {id:4,name:'David'},
-        {id:5,name:'Emily'},
+        {id:5,name:'Edward'},
     ]
     res.status(200).json(users)
+})
+
+app.get('*name',(req,res)=>
+{
+    res.sendFile('public/index.html',{root:__dirname})
 })
 
 export default app;
